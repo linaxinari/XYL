@@ -1,0 +1,51 @@
+<!doctype HTML>
+    <head>
+        <meta name="viewport" content="width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=2.0">
+    </head>
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+    
+    
+    <body style='margin : 0px; overflow: hidden;'>
+    
+        <a-scene 
+                 arjs='sourceType: webcam; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
+                 arjs
+                 embedded 
+                 renderer="logarithmicDepthBuffer: true;"
+                 vr-mode-ui="enabled: false"
+                 gesture-detector
+                 id="scene"
+                 
+                 renderer="colorManagement: true; 
+                           physicallyCorrectLights: true;
+                           antialias: true;"
+                 >
+
+        <a-assets>
+            <a-asset-item id="pass" src="arama_lime.glb"></a-asset-item>
+        </a-assets>
+
+        <a-marker id="hert-marker" type='pattern' preset='custom' url='pattern-large.patt' 
+            raycaster="objects: .clickable"
+            emitevents="true"
+            cursor="fuse: false; rayOrigin: mouse;"
+            id="markerA">
+            
+            <a-entity
+                id="pass"
+                gltf-model="#pass"
+                position="0 0 0"
+                scale="1.5 1.5 1.5"
+                class="clickable"
+                gesture-handler>
+            </a-entity>
+            
+        </a-marker>
+          
+        <a-entity camera></a-entity>
+        </a-scene>
+    </body>
+</html>
